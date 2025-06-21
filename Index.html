@@ -1,7 +1,4 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,6 +15,8 @@
     .login-screen { position: fixed; inset: 0; background: #002f2a; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; }
     .login-screen input { padding: 10px; font-size: 1.2rem; border-radius: 8px; border: none; margin-bottom: 10px; text-align: center; }
     .login-screen button { background: #007d5c; color: white; padding: 10px 20px; font-size: 1rem; border: none; border-radius: 8px; }
+    #pinError { color: red; display: none; }
+    #balance { font-size: 1.5rem; font-weight: bold; color: green; }
   </style>
 </head>
 <body>
@@ -25,60 +24,35 @@
     <h2>Enter PIN to Continue</h2>
     <input type="password" id="pinInput" placeholder="Enter PIN" maxlength="4" />
     <button onclick="verifyPin()">Unlock</button>
-    <p id="pinError" style="color: red; display: none;">Incorrect PIN</p>
-  </div>
-
-  <header>NEDBANK PORTAL FUND OF ALL CUSTOMERS</header>
-
-  <div class="card" id="balanceCard">
+    <p id="pinError">Incorrect PIN</p>
+  </div>  <header>NEDBANK PORTAL FUND OF ALL CUSTOMERS</header>  <div class="card" id="balanceCard">
     <div>Main Account</div>
-    <div id="balance" style="font-size: 1.5rem; font-weight: bold; color: green;">R100,000,000,000 ZAR</div>
+    <div id="balance">R100,000,000,000 ZAR</div>
     <div>Account No: 1147241256</div>
     <div>Debit Card: 4523 7512 6589 9902</div>
-  </div>
-
-  <div class="card">
+  </div>  <div class="card">
     <h3>Transfer Funds</h3>
     <input id="name" placeholder="Beneficiary Name" />
     <input id="account" placeholder="Account Number" />
     <select id="bank">
-      <option value="Tyme">Tyme Bank</option>
-      <option value="Capitec">Capitec Bank</option>
-      <option value="Standard">Standard Bank</option>
-      <option value="ABSA">ABSA</option>
-      <option value="FNB">FNB</option>
-      <option value="Nedbank">Nedbank</option>
-      <option value="Investec">Investec</option>
-      <option value="Discovery">Discovery Bank</option>
-      <option value="African Bank">African Bank</option>
-      <option value="Bidvest">Bidvest Bank</option>
+      <option>Tyme Bank</option><option>Capitec Bank</option><option>Standard Bank</option>
+      <option>ABSA</option><option>FNB</option><option>Nedbank</option>
+      <option>Investec</option><option>Discovery Bank</option><option>African Bank</option><option>Bidvest Bank</option>
     </select>
     <input id="amount" placeholder="Amount in ZAR" />
     <input id="reference" placeholder="Payment Reference" />
     <button class="button" onclick="sendMoney()">Send Money</button>
-  </div>
-
-  <div class="card">
+  </div>  <div class="card">
     <h3>Buy 1Voucher VTU</h3>
     <input id="voucherAmount" placeholder="Amount in ZAR" />
     <button class="button" onclick="buyVoucher()">Buy Voucher</button>
-  </div>
-
-  <div class="card">
+  </div>  <div class="card">
     <h3>Transaction History</h3>
     <input id="search" placeholder="Search by reference or name" oninput="filterHistory()" />
     <div id="history"></div>
-  </div>
-
-  <div class="bottom-nav">
-    <div>Home</div>
-    <div>Pay</div>
-    <div>Cards</div>
-    <div>History</div>
-    <div>Profile</div>
-  </div>
-
-  <script>
+  </div>  <div class="bottom-nav">
+    <div>Home</div><div>Pay</div><div>Cards</div><div>History</div><div>Profile</div>
+  </div>  <script>
     let transactions = [];
     let currentBalance = 100000000000;
     const correctPin = "1977";
@@ -103,7 +77,7 @@
       const amount = parseFloat(document.getElementById("amount").value);
       const reference = document.getElementById("reference").value;
 
-      if (amount > currentBalance) { alert("Insufficient balance"); return; }
+      if (amount > currentBalance) return alert("Insufficient balance");
 
       alert("Processing payment...");
 
@@ -130,8 +104,9 @@
 
     function buyVoucher() {
       const amount = parseFloat(document.getElementById("voucherAmount").value);
-      if (isNaN(amount) || amount <= 0) { alert("Enter a valid amount"); return; }
-      if (amount > currentBalance) { alert("Insufficient balance"); return; }
+      if (isNaN(amount) || amount <= 0) return alert("Enter a valid amount");
+      if (amount > currentBalance) return alert("Insufficient balance");
+
       currentBalance -= amount;
       updateBalanceDisplay();
       transactions.unshift({
@@ -193,6 +168,6 @@
     }
 
     updateBalanceDisplay();
-  </script>
-</body>
-</
+  </script></body>
+</html>
+

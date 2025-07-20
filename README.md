@@ -2,7 +2,7 @@
 
 
 This is a static HTML/JS banking app clone. Features include:
-- PIN unlock (1977)
+- PIN unlock (0147)
 - Transfers to SA banks
 - 1Voucher VTU purchases
 - DeepSeek AI integration
